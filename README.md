@@ -4,7 +4,7 @@ Docker shadowsocks-libev
 build
 -----
 
-    ./build.sh
+    docker build .
 
 run
 ---

@@ -1,11 +1,14 @@
-FROM debian:wheezy
+FROM buildpack-deps:latest
 MAINTAINER dochang@gmail.com
 
-RUN apt-get update \
-  && apt-get --yes install libssl1.0.0 \
-  && rm -rf /var/lib/apt/lists/*
-
-COPY ss-local ss-server ss-redir ss-tunnel /usr/local/bin/
+RUN git clone https://github.com/shadowsocks/shadowsocks-libev.git /usr/src/shadowsocks-libev && \
+    cd /usr/src/shadowsocks-libev && \
+    ./configure && \
+    make && \
+    cd src && \
+    cp ss-local ss-server ss-redir ss-tunnel /usr/local/bin && \
+    cd / && \
+    rm -rf /usr/src/shadowsocks-libev
 
 VOLUME ["/etc/shadowsocks"]
 COPY entrypoint.sh /
