@@ -3,6 +3,9 @@ MAINTAINER dochang@gmail.com
 
 RUN git clone --branch v2.2.2 https://github.com/shadowsocks/shadowsocks-libev.git /usr/src/shadowsocks-libev && \
     cd /usr/src/shadowsocks-libev && \
+    apt-get update && \
+    apt-get --yes install build-essential autoconf libtool libssl-dev && \
+    rm -rf /var/lib/apt/lists/* && \
     ./configure && \
     make && \
     cd src && \
