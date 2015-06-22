@@ -1,7 +1,7 @@
 FROM buildpack-deps:latest
 MAINTAINER dochang@gmail.com
 
-RUN git clone --branch v2.1.4 https://github.com/shadowsocks/shadowsocks-libev.git /usr/src/shadowsocks-libev && \
+RUN git clone --branch v2.2.2 https://github.com/shadowsocks/shadowsocks-libev.git /usr/src/shadowsocks-libev && \
     cd /usr/src/shadowsocks-libev && \
     ./configure && \
     make && \
