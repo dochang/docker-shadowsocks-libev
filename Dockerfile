@@ -9,7 +9,7 @@ RUN git clone --branch v2.3.0 https://github.com/shadowsocks/shadowsocks-libev.g
     ./configure && \
     make && \
     cd src && \
-    cp ss-local ss-server ss-redir ss-tunnel /usr/local/bin && \
+    cp ss-local ss-server ss-redir ss-tunnel ss-manager /usr/local/bin && \
     cd / && \
     rm -rf /usr/src/shadowsocks-libev
 
