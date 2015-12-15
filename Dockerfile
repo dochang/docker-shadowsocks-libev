@@ -13,7 +13,7 @@ RUN set -ex && \
     cp ss-local ss-server ss-redir ss-tunnel ss-manager /usr/local/bin && \
     cd / && \
     rm -rf ${src_dir} && \
-    apk del build-dependencies && \
+    apk del --purge build-dependencies && \
     rm -rf /var/cache/apk/*
 
 VOLUME ["/etc/shadowsocks"]
