@@ -5,7 +5,7 @@ set -ex
 export SHADOWSOCKS_LIBEV_VERSION=v2.3.1
 
 build_deps='build-base linux-headers git autoconf libtool file openssl-dev'
-apk add --update-cache --virtual shadowsocks-libev-dependencies ${build_deps}
+apk add --no-cache --virtual shadowsocks-libev-dependencies ${build_deps}
 
 src_dir=/usr/local/src/shadowsocks-libev
 src_repo=https://github.com/shadowsocks/shadowsocks-libev.git
