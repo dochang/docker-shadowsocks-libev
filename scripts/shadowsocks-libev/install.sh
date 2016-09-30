@@ -20,4 +20,15 @@ cd /
 
 rm -rf ${src_dir}
 
+# Run `scanelf` before removing build deps.  Otherwise `apk info` will not
+# display non-existing deps.
+deps="$( \
+        scanelf --needed --nobanner --recursive /usr/local \
+                | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
+                | sort -u \
+                | xargs -r apk info --installed \
+                | sort -u \
+)"
+apk add --no-cache --virtual .shadowsocks-libev-deps ${deps}
+
 apk del --purge .shadowsocks-libev-build-deps
