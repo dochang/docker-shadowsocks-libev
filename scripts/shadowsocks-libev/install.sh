@@ -2,7 +2,7 @@
 
 set -ex
 
-export SHADOWSOCKS_LIBEV_VERSION=v2.4.8
+export SHADOWSOCKS_LIBEV_VERSION=v2.5.3
 
 build_deps='build-base linux-headers git autoconf libtool file openssl-dev asciidoc xmlto'
 apk add --no-cache --virtual shadowsocks-libev-dependencies ${build_deps}
