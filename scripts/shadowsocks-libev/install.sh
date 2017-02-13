@@ -2,20 +2,21 @@
 
 set -ex
 
-export SHADOWSOCKS_LIBEV_VERSION=v2.5.6
+export SHADOWSOCKS_LIBEV_VERSION=v3.0.2
 
-build_deps='build-base linux-headers git autoconf libtool file openssl-dev asciidoc xmlto pcre-dev'
+build_deps='autoconf automake build-base git libev-dev libtool linux-headers udns-dev libsodium-dev mbedtls-dev pcre-dev asciidoc xmlto file'
 apk add --no-cache --virtual .shadowsocks-libev-build-deps ${build_deps}
 
 src_dir=/usr/local/src/shadowsocks-libev
 src_repo=https://github.com/shadowsocks/shadowsocks-libev.git
-git clone --branch "${SHADOWSOCKS_LIBEV_VERSION}" "${src_repo}" ${src_dir}
+git clone --recursive --branch "${SHADOWSOCKS_LIBEV_VERSION}" "${src_repo}" ${src_dir}
 cd ${src_dir}
+./autogen.sh
 ./configure
 make
 
 cd src
-install -c ss-local ss-server ss-redir ss-tunnel ss-manager /usr/local/bin
+install -c ss-local ss-server ss-nat ss-redir ss-tunnel ss-manager /usr/local/bin
 cd /
 
 rm -rf ${src_dir}
